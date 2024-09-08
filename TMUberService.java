@@ -1,11 +1,9 @@
-/*//Izma Mujeeb
-//501231651
+/*
  * 
  * General class that simulates a ride or a delivery in a simple Uber app
  * 
  * This class is made abstract since we never create an object. We only create subclass objects. 
  * 
- * Implement the Comparable interface and compare two service requests based on the distance
  */
 abstract public class TMUberService implements Comparable<TMUberService>
 {   
@@ -25,7 +23,6 @@ abstract public class TMUberService implements Comparable<TMUberService>
     this.cost = cost;
     this.type = type;
   }
-
 
   // Subclasses define their type (e.g. "RIDE" OR "DELIVERY") 
   abstract public String getServiceType();
@@ -72,17 +69,10 @@ abstract public class TMUberService implements Comparable<TMUberService>
     this.cost = cost;
   }
 
-  // Compare 2 service requests based on distance
-  // Add the appropriate method
-
   public int compareTo(TMUberService a) {
     return this.distance - a.distance; // return the difference between both distances 
   }
   
-  
-  // Check if 2 service requests are equal (this and other)
-  // They are equal if its the same type and the same user
-  // Make sure to check the type first
   public boolean equals(Object other)
   {
     // Fill in the code

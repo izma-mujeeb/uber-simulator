@@ -1,5 +1,3 @@
-//Izma Mujeeb
-//501231651
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -34,17 +32,9 @@ public class CityMap
   {
     String regex = "^[0-9]+[0-9]$"; // regular expression 
     return s.matches(regex); //checks if string contains all digits (true or false return type)
-    /* 
-    for (int i = 0; i < s.length(); i++)
-      if (!Character.isDigit(s.charAt(i)))
-        return false;
-    return  true;
-    */
   }
 
   // Get all parts of address string
-  // An easier solution would use String method split()
-  // Other solutions are possible - you may replace this code if you wish
   private static String[] getParts(String address)
   {
     String parts[] = new String[3]; // initalizing a String array that has 3 elements 
@@ -54,40 +44,11 @@ public class CityMap
     }
     parts = address.split(" "); //splitting the address into 3 main parts 
     return parts; // returning the split address 
-    /* 
-    String parts[] = new String[3];
-    
-    if (address == null || address.length() == 0)
-    {
-      parts = new String[0];
-      return parts;
-    }
-    int numParts = 0;
-    Scanner sc = new Scanner(address);
-    while (sc.hasNext())
-    {
-      if (numParts >= 3)
-        parts = Arrays.copyOf(parts, parts.length+1);
-
-      parts[numParts] = sc.next();
-      numParts++;
-    }
-    if (numParts == 1)
-      parts = Arrays.copyOf(parts, 1);
-    else if (numParts == 2)
-      parts = Arrays.copyOf(parts, 2);
-    return parts;
-    */
   }
 
   // Checks for a valid address
   public static boolean validAddress(String address)
   {
-    // Fill in the code
-    // Make use of the helper methods above if you wish
-    // There are quite a few error conditions to check for 
-    // e.g. number of parts != 3
-
     String [] s = getParts(address); //calling the getParts(String address) method to get all 3 parts of the address 
     if (s.length != 3) { //testing for an edge case
       return false; 
@@ -107,10 +68,6 @@ public class CityMap
     return true; //return true if address is a validAddress 
   }
 
-  // Computes the city block coordinates from an address string
-  // returns an int array of size 2. e.g. [3, 4] 
-  // where 3 is the avenue and 4 the street
-  // See comments at the top for a more detailed explanation
   public static int[] getCityBlock(String address)
   {
     int[] block = {-1, -1};
@@ -128,27 +85,11 @@ public class CityMap
     return block;
   }
   
-  // Calculates the distance in city blocks between the 'from' address and 'to' address
-  // Hint: be careful not to generate negative distances
-  
-  // This skeleton version generates a random distance
-  // If you do not want to attempt this method, you may use this default code
   public static int getDistance(String from, String to)
   {
-    // Fill in the code or use this default code below. If you use
-    // the default code then you are not eligible for any marks for this part
     int[] block_1 = getCityBlock(from); // calling the getCityBlockMethod(String s) to get the appropriate city blocks 
     int[] block_2 = getCityBlock(to); // calling the getCityBlockMethod(String s) to get the appropriate city blocks
     return Math.abs((block_2[0] - block_1[0])) + Math.abs((block_2[1] - block_1[1])); //returning the absolute value of the two addresses 
-    
-    /* 
-    // Math.random() generates random number from 0.0 to 0.999
-    // Hence, Math.random()*17 will be from 0.0 to 16.999
-    double doubleRandomNumber = Math.random() * 17;
-    // cast the double to whole number
-    int randomNumber = (int)doubleRandomNumber;
-    return (randomNumber);
-    */
   }
 
   public static int getCityZone(String address) {

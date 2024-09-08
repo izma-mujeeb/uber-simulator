@@ -1,5 +1,3 @@
-//Izma Mujeeb
-//501231651
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,8 +52,7 @@ public class TMUberSystemManager
   }
 
   boolean sort = false;
-  // Given user account id, find user in list of users
-  // Return null if not found
+
   public static ArrayList<User> getUserArraylist() {
     ArrayList<User> u = new ArrayList<User>();
     for (String s : users.keySet()) {
@@ -74,7 +71,6 @@ public class TMUberSystemManager
 
   public User getUser(String accountId)
   {
-    // Fill in the code
     for (String u : users.keySet()) { // iterate through the user treemap 
       if (users.get(u).getAccountId().equals(accountId)) { // check to see if accountId mathes 
         return users.get(u);  
@@ -95,7 +91,6 @@ public class TMUberSystemManager
   // Check for duplicate user
   private boolean userExists(User user)
   {
-    // Fill in the code
     for (String u : users.keySet()) { // iterate through the user arraylist 
       if (users.get(u).equals(user)) { // check to see if users equal each other 
         return true;
@@ -107,7 +102,6 @@ public class TMUberSystemManager
  // Check for duplicate driver
  private boolean driverExists(Driver driver)
  {
-   // Fill in the code
   for (Driver d : drivers) { // iterate through drivers arraylist 
     if (d.equals(driver)) { // check to see if drivers equal each other 
       return true; 
@@ -119,7 +113,6 @@ public class TMUberSystemManager
   // Given a user, check if user ride/delivery request already exists in service requests
   private boolean existingRequest(TMUberService req)
   {
-    // Fill in the code
     for (TMUberService t : serviceRequests[0]) { // iterate through zone 0 serviceRequest queue
       if (t.equals(req)) { // if there is an existing request
         return true;
@@ -183,7 +176,6 @@ public class TMUberSystemManager
   // Print Information (printInfo()) about all registered drivers in the system
   public void listAllDrivers()
   {
-    // Fill in the code
     System.out.println();
     int index = 1;
     for (Driver driver : drivers) { // iterate through drivers arraylist 
@@ -197,7 +189,6 @@ public class TMUberSystemManager
   // Print Information (printInfo()) about all current service requests
   public void listAllServiceRequests()
   {
-    // Fill in the code
     System.out.println("ZONE 0");
     System.out.println("------\n------");
     int index = 1;
@@ -242,16 +233,6 @@ public class TMUberSystemManager
   // Add a new user to the system
   public void registerNewUser(String name, String address, double wallet)
   {
-    // Fill in the code. Before creating a new user, check paramters for validity
-    // See the assignment document for list of possible erros that might apply
-    // Write the code like (for example):
-    // if (address is *not* valid)
-    // {
-    //    set errMsg string variable to "Invalid Address "
-    //    return false
-    // }
-    // If all parameter checks pass then create and add new user to array list users
-    // Make sure you check if this user doesn't already exist!
     if (name == null || name.equals("")) { // checking is name is an empty string or null 
       throw new IllegalArgumentException("Invalid User Name"); // exception handling
     } else if (wallet < 0) { // checking is wallet is below 0 
@@ -269,8 +250,6 @@ public class TMUberSystemManager
   // Add a new driver to the system
   public void registerNewDriver(String name, String carModel, String carLicencePlate, String address)
   {
-    // Fill in the code - see the assignment document for error conditions
-    // that might apply. See comments above in registerNewUser
     
     if (name == null || name.equals("")) { // checking if name is null or an empty string 
       throw new IllegalArgumentException("Invalid Driver Name"); // exception handling
@@ -289,16 +268,6 @@ public class TMUberSystemManager
   // Request a ride. User wallet will be reduced when drop off happens
   public void requestRide(String accountId, String from, String to)
   {
-    // Check for valid parameters
-	  // Use the account id to find the user object in the list of users
-    // Get the distance for this ride
-    // Note: distance must be > 1 city block!
-    // Find an available driver
-    // Create the TMUberRide object
-    // Check if existing ride request for this user - only one ride request per user at a time!
-    // Change driver status
-    // Add the ride request to the list of requests
-    // Increment the number of rides for this user
     
     if (getUser(accountId) == null) { // checking if accountId and addresses are valid 
       throw new UserNotFoundException("Invalid User Id");  // exception handling
@@ -338,9 +307,6 @@ public class TMUberSystemManager
   // Request a food delivery. User wallet will be reduced when drop off happens
   public void requestDelivery(String accountId, String from, String to, String restaurant, String foodOrderId)
   {
-    // See the comments above and use them as a guide
-    // For deliveries, an existing delivery has the same user, restaurant and food order id
-    // Increment the number of deliveries the user has had
     if (getUser(accountId) == null) { // checking if accountId and addresses are valid 
       throw new UserNotFoundException("Invalid User Id"); // exception handling 
     } else if (!CityMap.validAddress(from)) {
@@ -385,10 +351,6 @@ public class TMUberSystemManager
   // parameter int request is the index in the serviceRequests array list
   public void cancelServiceRequest(int request, int zone)
   {
-    // Check if valid request #
-    // Remove request from list
-    // Also decrement number of rides or number of deliveries for this user
-    // since this ride/delivery wasn't completed
     Queue<TMUberService> tempzone = null;
     tempzone = (zone == 0) ? serviceRequests[0] : tempzone; // check to see which queue to iterate over 
     tempzone = (zone == 1) ? serviceRequests[1] : tempzone; // check to see which queue to iterate over 
@@ -426,12 +388,6 @@ public class TMUberSystemManager
   // parameter request is the index in the serviceRequests array list
   public void dropOff(String driverId)
   {
-    // See above method for guidance
-    // Get the cost for the service and add to total revenues
-    // Pay the driver
-    // Deduct driver fee from total revenues
-    // Change driver status
-    // Deduct cost of service from user
     if (getDriver(driverId) == null) {
       throw new DriverNotFoundException("Invalid Driver Id"); // exception handling 
     }

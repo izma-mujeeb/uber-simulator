@@ -1,5 +1,3 @@
-//Izma Mujeeb
-//501231651
 /*
  * 
  * This class simulates an ride service for a simple Uber app
@@ -16,7 +14,6 @@ public class TMUberRide extends TMUberService
   // Constructor to initialize all inherited and new instance variables 
   public TMUberRide(String from, String to, User user, int distance, double cost)
   {
-    // Fill in the code - make use of the super method
     super(from, to, user, distance, cost, TYPENAME); 
     this.numPassengers = 1; // initialize instance variables 
     this.requestedXL = false; // initialize instance variables

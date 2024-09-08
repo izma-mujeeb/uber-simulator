@@ -1,5 +1,3 @@
-//Izma Mujeeb
-//501231651
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
@@ -22,11 +20,6 @@ public class TMUberRegistered
     {
         return "" + firstDriverId + current.size();
     }
-
-    // Database of Preregistered users
-    // The test scripts and test outputs included with the skeleton code use these
-    // users and drivers below. You may want to work with these to test your code (i.e. check your output with the
-    // sample output provided). 
     public static ArrayList<User> loadPreregisteredUsers(String filename) throws IOException
     {
         ArrayList<User> users = new ArrayList<User>(); // create a temporary user arraylist 
